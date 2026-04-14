@@ -9,7 +9,6 @@ on:
 env:
   REPO_URL: https://github.com/laipeng668/immortalwrt.git
   REPO_BRANCH: master
-  OPENWRT_COMMIT: 02f40d63e23a67aad34aae01079352ae6f690e2c
   CONFIG_FILE: configs/JDCloud.config
   GENERAL_CONFIG_FILE: configs/General.config
   DIY_SCRIPT: scripts/Roc-script.sh
@@ -55,8 +54,6 @@ jobs:
         sudo chown -R $(id -u):$(id -g) /mnt/openwrt
         git clone --depth 1 -b $REPO_BRANCH --single-branch $REPO_URL /mnt/openwrt
         cd /mnt/openwrt
-        git fetch --depth 1 origin $OPENWRT_COMMIT
-        git checkout --detach $OPENWRT_COMMIT
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
         echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
